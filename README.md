@@ -1,5 +1,5 @@
 # wpdownloader
-# Python Script for Downloading Wordpress Content
+# Downloading Wordpress Content
 
 This is a simple Python script for downloading Wordpress site content and storing it locally. The script fetches articles, pages, and media from the site, and saves them into appropriate directories.
 
