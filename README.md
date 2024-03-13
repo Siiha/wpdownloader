@@ -6,7 +6,7 @@ This is a simple Python script for downloading Wordpress site content and storin
 ## Usage Instructions
 
 1. Install the required dependencies by running `pip install requests`.
-2. Run the script as follows: `python3 script_name.py <WordPress_site_URL>`.
+2. Run the script as follows: `python3 wpdownloader.py <WordPress_site_URL>`.
 
 ## How the Script Works
 
