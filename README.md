@@ -6,7 +6,8 @@ This is a simple Python script for downloading Wordpress site content and storin
 ## Usage Instructions
 
 1. Install the required dependencies by running `pip install requests`.
-2. Run the script as follows: `python3 wpdownloader.py <WordPress_site_URL>`.
+2. Install tqdm `pip install tqdm`
+3. Run the script as follows: `python3 wpdownloader.py <WordPress_site_URL>`.
 
 ## How the Script Works
 
@@ -19,6 +20,5 @@ The script operates as follows:
 
 ## Notes
 
-- The script fetches up to 100 articles, pages, and media files at a time.
 - Note that the script does not handle renaming in case of conflicts if files already exist with the same name.
 - You can customize the script according to your needs by adding or modifying directory handling.
