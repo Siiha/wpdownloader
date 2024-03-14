@@ -7,7 +7,7 @@ This is a simple Python script for downloading Wordpress site content and storin
 
 1. Install the required dependencies by running `pip install requests`.
 2. Install tqdm `pip install tqdm`
-3. Run the script as follows: `python3 wpdownloader.py <WordPress_site_URL>`.
+3. Run the script as follows: `python3 wpdownloader.py <WordPress_site_URL> (0 or 1) 1 if you want to download the pages too, otherwise 0`.
 
 ## How the Script Works
 
