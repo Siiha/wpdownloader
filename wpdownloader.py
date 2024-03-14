@@ -1,12 +1,24 @@
 #!/usr/bin/env python3
 import requests,os,re
+from tqdm import tqdm
 from sys import argv
 s = requests.Session()
 url = argv[1]
 def dataurl(url):
-	with s.get(url) as url:
-		if url.status_code != 200: url.raise_for_status()
-		return url.json()
+	def page_numbers():
+		num = 1
+		while True:
+			yield num
+			num += 1
+	allpages=[]
+	a = s.get(url)
+	if a.status_code != 200: a.raise_for_status()
+	for page in tqdm(page_numbers()):
+		a = s.get(url,params={"page":page,"per_page": 100}).json()
+		if isinstance(a, dict) and a["code"] == "rest_post_invalid_page_number":
+			break
+		allpages+=a
+	return allpages
 def html(data):
 	os.makedirs('html', exist_ok=True)
 	for i in data:
@@ -29,9 +41,9 @@ def media(data):
 		r = s.get(f"{url}{i['guid']['rendered']}", allow_redirects=True)
 		if r.status_code != 200: r.raise_for_status()
 		open(pth,'wb').write(r.content)
-data = dataurl(f"{url}/wp-json/wp/v2/posts/?_fields=title,content&?_embed&per_page=100")
+data = dataurl(f"{url}/wp-json/wp/v2/posts/")
 html(data)
-data = dataurl(f"{url}/wp-json/wp/v2/pages/?_fields=title,content&?_embed&per_page=100")
+data = dataurl(f"{url}/wp-json/wp/v2/pages/")
 html(data)
-data = dataurl(f"{url}/wp-json/wp/v2/media/?_fields=title,guid&?_embed&per_page=100")
+data = dataurl(f"{url}/wp-json/wp/v2/media/")
 media(data)
