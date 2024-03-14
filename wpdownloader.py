@@ -38,12 +38,15 @@ def media(data):
 		os.makedirs(dir, exist_ok=True)
 		pth = os.path.join('.',dir,a)
 		if os.path.isfile(pth): continue
-		r = s.get(f"{url}{i['guid']['rendered']}", allow_redirects=True)
+		y = i['guid']['rendered'] if url.replace("https","http") in i['guid']['rendered'] or url in i['guid']['rendered'] else f"{url}{i['guid']['rendered']}"
+		r = s.get(y, allow_redirects=True)
 		if r.status_code != 200: r.raise_for_status()
 		open(pth,'wb').write(r.content)
 data = dataurl(f"{url}/wp-json/wp/v2/posts/")
 html(data)
-data = dataurl(f"{url}/wp-json/wp/v2/pages/")
-html(data)
+if int(argv[2]):
+	data = dataurl(f"{url}/wp-json/wp/v2/pages/")
+	html(data)
 data = dataurl(f"{url}/wp-json/wp/v2/media/")
 media(data)
+
