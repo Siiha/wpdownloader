@@ -42,11 +42,13 @@ def media(data):
 		r = s.get(y, allow_redirects=True)
 		if r.status_code != 200: r.raise_for_status()
 		open(pth,'wb').write(r.content)
-data = dataurl(f"{url}/wp-json/wp/v2/posts/")
-html(data)
 if int(argv[2]):
+	data = dataurl(f"{url}/wp-json/wp/v2/posts/")
+	html(data)
+if int(argv[3]):
 	data = dataurl(f"{url}/wp-json/wp/v2/pages/")
 	html(data)
-data = dataurl(f"{url}/wp-json/wp/v2/media/")
-media(data)
+if int(argv[4]):
+	data = dataurl(f"{url}/wp-json/wp/v2/media/")
+	media(data)
 
