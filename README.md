@@ -1,24 +1,30 @@
-# wpdownloader
-# Downloading Wordpress Content
+# Wpdownloader
 
-This is a simple Python script for downloading Wordpress site content and storing it locally. The script fetches articles, pages, and media from the site, and saves them into appropriate directories.
+This program is designed to download content from a WordPress site and save it locally.
 
-## Usage Instructions
+## Usage
 
-1. Install the required dependencies by running `pip install requests`.
-2. Install tqdm `pip install tqdm`
-3. Run the script as follows: `python3 wpdownloader.py <WordPress_site_URL> (0 or 1) 1 if you want to download the pages too, otherwise 0`.
+1. Install the required libraries with the command:
 
-## How the Script Works
+    ```bash
+    pip install requests tqdm
+    ```
 
-The script operates as follows:
+2. Run the program with the command:
 
-1. Fetches JSON-formatted data from the Wordpress site.
-2. Creates necessary directories (e.g., `html`, `pictures`, `pdf`, `other`) for local storage.
-3. Saves the content of Wordpress articles as HTML files in the `html` directory.
-4. Saves media files (images, PDFs) into the appropriate directories.
+    ```bash
+    python3 wpdownloader.py <WordPress_site_URL> <download_posts> <download_pages> <download_media>
+    ```
+
+    - `<WordPress_site_URL>`: The URL of the WordPress site from which content will be downloaded.
+    - `<download_posts>`: 1 if you want to download posts, 0 otherwise.
+    - `<download_pages>`: 1 if you want to download pages, 0 otherwise.
+    - `<download_media>`: 1 if you want to download media files, 0 otherwise.
+
+3. The program will download the requested data and save it to the local system.
 
 ## Notes
 
-- Note that the script does not handle renaming in case of conflicts if files already exist with the same name.
-- You can customize the script according to your needs by adding or modifying directory handling.
+- The program saves posts as HTML files and media files in their original formats.
+- Information for posts and pages is saved in the `html` directory.
+- Media files are saved in directories `pictures`, `pdf`, and `other` based on their file types.
