@@ -3,7 +3,7 @@ import requests,os,re
 from tqdm import tqdm
 from sys import argv
 s = requests.Session()
-url = argv[1]
+url,post,page,media = argv
 def dataurl(url): # downloads all pages of a WP REST API endpoint
 	def page_numbers():
 		num = 1
@@ -42,13 +42,13 @@ def media(data): # downloads media files
 		r = s.get(y, allow_redirects=True)
 		if r.status_code != 200: r.raise_for_status()
 		open(pth,'wb').write(r.content)
-if int(argv[2]):
+if int(post):
 	data = dataurl(f"{url}/wp-json/wp/v2/posts/")
 	html(data)
-if int(argv[3]):
+if int(page):
 	data = dataurl(f"{url}/wp-json/wp/v2/pages/")
 	html(data)
-if int(argv[4]):
+if int(media):
 	data = dataurl(f"{url}/wp-json/wp/v2/media/")
 	media(data)
 
