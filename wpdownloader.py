@@ -4,7 +4,7 @@ from tqdm import tqdm
 from sys import argv
 s = requests.Session()
 url = argv[1]
-def dataurl(url):
+def dataurl(url): # downloads all pages of a WP REST API endpoint
 	def page_numbers():
 		num = 1
 		while True:
@@ -19,14 +19,14 @@ def dataurl(url):
 			break
 		allpages+=a
 	return allpages
-def html(data):
+def html(data): # saves posts/pages as html files
 	os.makedirs('html', exist_ok=True)
 	for i in data:
 		a = i['title']['rendered'].replace('ä','a')
 		a = os.path.join('html',f"{re.sub("[^a-z0-9]+", "_", a, flags=re.I)}.html")
 		if os.path.isfile(a) : continue
 		open(a,'w').write(i['content']['rendered'])
-def media(data):
+def media(data): # downloads media files
 	ext_to_dir = {
     '.png': 'pictures',
     '.pdf': 'pdf',
