@@ -26,7 +26,7 @@ def html(data): # saves posts/pages as html files
 		a = os.path.join('html',f"{re.sub("[^a-z0-9]+", "_", a, flags=re.I)}.html")
 		if os.path.isfile(a) : continue
 		open(a,'w').write(i['content']['rendered'])
-def media(data): # downloads media files
+def Media(data): # downloads media files
 	ext_to_dir = {
     '.png': 'pictures',
     '.pdf': 'pdf',
@@ -50,5 +50,5 @@ if int(page):
 	html(data)
 if int(media):
 	data = dataurl(f"{url}/wp-json/wp/v2/media/")
-	media(data)
+	Media(data)
 
