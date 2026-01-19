@@ -3,7 +3,7 @@ import requests,os,re
 from tqdm import tqdm
 from sys import argv
 s = requests.Session()
-url,post,page,media = argv
+url,post,page,media = argv[1:5] # url, download posts(1/0), pages(1/0), media(1/0)
 def dataurl(url): # downloads all pages of a WP REST API endpoint
 	def page_numbers():
 		num = 1
