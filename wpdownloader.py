@@ -6,6 +6,9 @@ import unicodedata
 import urllib
 import mimetypes
 s = requests.Session()
+s.headers.update({
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+})
 url,post,page,media = argv[1:5] # url, download posts(1/0), pages(1/0), media(1/0)
 def dataurl(url): # downloads all pages of a WP REST API endpoint
 	def page_numbers():
